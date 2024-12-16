@@ -28,15 +28,17 @@
 
 <body>
     <header class="my-5 my-6">
-        <h1 class="title has-text-centered is-1">Pokedex</h1>
+        <h1 class="title has-text-centered is-1">Types</h1>
         <nav class="navbar is-flex is-justify-content-space-evenly" id="navbar_main" role="navigation"
             aria-label="main navigation">
             <a class="navbar-item" id="nav-item-home" href="./index.html"> Home </a>
             <a class="navbar-item" id="nav-item-type" href="./types.html"> Types </a>
             <a class="navbar-item" id="nav-item-team"> Teams </a>
-            <a class="navbar-item" id="nav-item-add-team" href="../docs/integration/components.html"> Add Team </a>
+            <a class="navbar-item" id="nav-item-add-team"> Add Team </a>
         </nav>
     </header>
+    <div id="FilterType" class="is-flex is-justify-content-center my-6 is-flex-wrap-wrap">
+    </div>
 
     <main id="app"
         class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6">
@@ -44,8 +46,8 @@
 
         <!-- DO YOUR WORK HERE -->
 
-    </main>
 
+    </main>
     <!-- Fenetre de un pokemon -->
 
     <div class="modal" id="pkm_detail">
@@ -124,19 +126,6 @@
             </footer>
         </div>
     </div>
-
-    <!-- <script>
-        // Sample code, do not use as it is, adapt it to your needs
-        const pokemonModal = document.getElementById("pkm_detail");
-        const openPkmDetail = document.getElementById("open_pkm_detail_exemple");
-        const closePkmDetail = document.querySelector("#pkm_detail .close");
-        openPkmDetail.addEventListener("click", () => {
-          pokemonModal.classList.add("is-active");
-        });
-        closePkmDetail.addEventListener("click", () => {
-          pokemonModal.classList.remove("is-active");
-        });
-      </script> -->
 
     <!-- ADD YOUR SCRIPTS HERE -->
 </body>
