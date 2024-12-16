@@ -21,6 +21,9 @@
 
     <!-- Custom CSS-->
     <link rel="stylesheet" href="./asset/css/style.css" />
+
+    <!-- Script JS -->
+    <script defer type="module" src="./asset/js/index.js"></script>
 </head>
 
 <body>
@@ -43,8 +46,99 @@
 
     </main>
 
+    <!-- Fenetre de un pokemon -->
+
+    <div class="modal" id="pkm_detail">
+        <div class="modal-background close"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <h2 class="modal-card-title pkm_name">Bulbizarre</h2>
+                <i class="fa fa-window-close close"></i>
+            </header>
+            <section
+                class="modal-card-body is-flex is-flex-direction-row is-align-content-center is-align-items-center">
+                <div class="mr-4">
+                    <img src="./asset/img/1.webp" class="pkm_img_modal">
+                </div>
+                <div class="modal-card-content pkm_stats_modal">
+                    <h4 class="mb-4">Statistiques</h4>
+                    <p class="modal_team_types"></p>
+                    <div class="pv">
+                        <div class="is-flex is-justify-content-space-start">
+                            <div class="">PV:</div>
+                            <div class="pokemon-hp ml-1"></div>
+                        </div>
+                        <progress class="progress is-danger" value="50" max="255"></progress>
+                    </div>
+                    <div class="row atk">
+                        <div class="is-flex is-justify-content-space-start">
+                            <div class="">Attaque:</div>
+                            <div class="pokemon-atk ml-1"></div>
+                        </div>
+                        <progress class="progress is-danger" value="70" max="255"></progress>
+                    </div>
+                    <div class="row def">
+                        <div class="is-flex is-justify-content-space-start">
+                            <div class="">Défense:</div>
+                            <div class="pokemon-def ml-1"></div>
+                        </div>
+                        <progress class="progress is-danger" value="90" max="255"></progress>
+                    </div>
+                    <div class="row atk_spe">
+                        <div class="is-flex is-justify-content-space-start">
+                            <div class="">Attaque Spé:</div>
+                            <div class="pokemon-atk_spe ml-1"></div>
+                        </div>
+                        <progress class="progress is-danger" value="110" max="255"></progress>
+                    </div>
+                    <div class="row def_spe">
+                        <div class="is-flex is-justify-content-space-start">
+                            <div class="">Défense Spé:</div>
+                            <div class="pokemon-def_spe ml-1"></div>
+                        </div>
+                        <progress class="progress is-danger" value="130" max="255"></progress>
+                    </div>
+                    <div class="row speed">
+                        <div class="is-flex is-justify-content-space-start">
+                            <div class="">Vitesse:</div>
+                            <div class="pokemon-speed ml-1"></div>
+                        </div>
+                        <progress class="progress is-danger" value="150" max="255"></progress>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot is-flex">
+                <div class="add_team_container">
+                    <form id="form_add_pkm_team">
+                        <select class="select">
+                            <option value="1">Team 1</option>
+                            <option value="2">Team 2</option>
+                            <option value="3">Team 3</option>
+                        </select>
+                        <button class="button btn_add_team">Add To Team</button>
+                    </form>
+                </div>
+                <div class="buttons">
+                    <button class="button close">Retour</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Sample code, do not use as it is, adapt it to your needs
+        const pokemonModal = document.getElementById("pkm_detail");
+        const openPkmDetail = document.getElementById("open_pkm_detail_exemple");
+        const closePkmDetail = document.querySelector("#pkm_detail .close");
+        openPkmDetail.addEventListener("click", () => {
+          pokemonModal.classList.add("is-active");
+        });
+        closePkmDetail.addEventListener("click", () => {
+          pokemonModal.classList.remove("is-active");
+        });
+      </script> -->
+
     <!-- ADD YOUR SCRIPTS HERE -->
-    <script type="module" src="./asset/js/index.js"></script>
 </body>
 
 <!-- Template Cartes Pokemons -->
