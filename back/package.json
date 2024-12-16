@@ -1,14 +1,14 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:create": "psql -U admin_pokedex -d pokedex -f ./data/create_tables.sql",
     "db:seed": " psql -U admin_pokedex -d pokedex -f ./data/seeding_tables.sql",
     "db:reset": "npm run db:create && npm run db:seed",
-    "dev": "node --watch index.js"
+    "dev": "clear && node --watch app.js"
   },
   "keywords": [],
   "author": "",
