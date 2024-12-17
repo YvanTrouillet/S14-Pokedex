@@ -183,6 +183,8 @@ VALUES
 -- Reset the ID sequence because we manually inserted the ID in the command before, so the sequence needs an update.
 SELECT setval('pokemon_id_seq', (SELECT MAX(id) from "pokemon"));
 
+SELECT setval('type_id_seq', (SELECT MAX(id) from "type"));
+
 
 INSERT INTO "pokemon_type" 
   ("pokemon_id", "type_id")
@@ -431,5 +433,7 @@ VALUES
 (146,3),
 (145,3),
 (144,3);
+
+SELECT setval('team_id_seq', (SELECT MAX(id) from "team"));
 
 COMMIT;
