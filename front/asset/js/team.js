@@ -5,6 +5,8 @@ const team = {
   init: () => {
     team.getTeams();
     modal.init();
+    document.querySelector(".edit").addEventListener("click", team.showInputEditTeam);
+    document.querySelector(".modal-card-head form").addEventListener("submit", team.handleEditName);
   },
 
   getTeams: async () => {
@@ -28,6 +30,7 @@ const team = {
 
     // Modification des données
     clone.querySelector(".team-name").textContent = data.name;
+    clone.querySelector("section").setAttribute("id", `${data.id}`);
     clone.querySelector(".team-description").textContent = data.description;
 
     // boucle pour avoir tous les pokemons de la team
@@ -56,34 +59,99 @@ const team = {
     const idTeam = event.currentTarget.dataset.id;
     modal.openCloseModal("modal");
     try {
-      const team = await fetch(api.BaseUrl + "/teams/" + idTeam);
-      const data = await team.json();
+      const teamApi = await fetch(api.BaseUrl + "/teams/" + idTeam);
+      const data = await teamApi.json();
 
-      const modal = document.querySelector("#modal");
-      modal.querySelector(".team_name").textContent = data.name;
-
-      const Array = document.querySelector("#tbody_team");
-      Array.innerHTML = "";
-      const templateTable = document.querySelector("#table-modal");
-
-      for (const pokemon of data.pokemon) {
-        const row = document.importNode(templateTable.content, true);
-
-        const cells = row.querySelectorAll("td");
-
-        const icon = '<i class="fa fa-trash"></i>';
-
-        const pokemonData = [pokemon.id, pokemon.name, pokemon.hp, pokemon.atk, pokemon.def, pokemon.atk_spe, pokemon.def_spe, pokemon.speed, pokemon.type[0].name, icon];
-
-        cells.forEach((cell, index) => {
-          cell.innerHTML = pokemonData[index];
-        });
-
-        Array.append(row);
-      }
+      team.dataPokemonTeamModal(data);
     } catch (error) {
       console.error(error);
     }
+  },
+
+  dataPokemonTeamModal: (data) => {
+    const modal = document.querySelector("#modal");
+    modal.querySelector(".team_name").textContent = data.name;
+
+    const Array = document.querySelector("#tbody_team");
+    Array.innerHTML = "";
+    const templateTable = document.querySelector("#table-modal");
+
+    for (const pokemon of data.pokemon) {
+      // Clonage du template de ligne
+      const row = document.importNode(templateTable.content, true);
+
+      // Récupération des cellules du tableau
+      const cells = row.querySelectorAll("td");
+
+      // Ajout des données dans un tableau
+      const icon = '<i class="fa fa-trash"></i>';
+      const pokemonData = [pokemon.id, pokemon.name, pokemon.hp, pokemon.atk, pokemon.def, pokemon.atk_spe, pokemon.def_spe, pokemon.speed, pokemon.type[0].name, icon];
+
+      // Boucle sur le tableau de toutes les cellules et ajout des données grâce à l'index.
+      cells.forEach((cell, index) => {
+        cell.innerHTML = pokemonData[index];
+      });
+
+      Array.append(row);
+    }
+  },
+
+  showInputEditTeam: () => {
+    const form = document.querySelector(".modal-card-head form");
+    const h2 = document.querySelector(".modal-card-head h2");
+
+    form.classList.remove("hidden");
+    form.querySelector("input").value = h2.textContent;
+    h2.classList.add("hidden");
+  },
+
+  closeInputEditTeam: () => {
+    document.querySelector(".modal-card-head form").classList.add("hidden");
+    document.querySelector(".modal-card-head h2").classList.remove("hidden");
+  },
+
+  handleEditName: async (event) => {
+    event.preventDefault();
+
+    // Récupération de données pour la modification
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    const teamId = document.querySelector(".btnModalTeam").dataset.id;
+
+    const updateNameTeam = await team.updateTeam(teamId, data);
+    if (updateNameTeam === null) {
+      console.log("Impossible de modifier la team !");
+      return;
+    }
+
+    team.updateToDOM(updateNameTeam);
+
+    team.closeInputEditTeam();
+
+    modal.openCloseModal("modal");
+  },
+
+  updateTeam: async (id, data) => {
+    try {
+      const result = await fetch(api.BaseUrl + "/teams/" + id, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!result.ok) {
+        console.error(result);
+        return null;
+      }
+      return await result.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  updateToDOM: (team) => {
+    const teamElement = document.getElementById(team.id);
+
+    teamElement.querySelector(".team-name").textContent = team.name;
   },
 };
 

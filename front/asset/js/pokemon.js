@@ -25,7 +25,7 @@ const pokemon = {
   },
 
   handleOnePokemon: async (event) => {
-    const idPokemon = event.currentTarget.getAttribute("data-id");
+    const idPokemon = event.currentTarget.dataset.id;
     modal.openCloseModal("modal");
     try {
       const result = await fetch(api.BaseUrl + "/pokemons/" + idPokemon);

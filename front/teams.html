@@ -54,7 +54,8 @@
             <header class="modal-card-head">
                 <h2 class="modal-card-title team_name"></h2>
                 <form class="hidden">
-                    <input type="text" name="team_name" class="modal-card-title input_team_name mr-3">
+                    <input type="text" name="name" class="modal-card-title input_team_name mr-3"
+                        style="background-color: transparent;">
                 </form>
                 <i class="fa fa-pencil edit mr-3"></i>
                 <i class="fa fa-window-close close"></i>
@@ -89,19 +90,6 @@
             </footer>
         </div>
     </div>
-
-    <!-- <script>
-        // Sample code, do not use as it is, adapt it to your needs
-        const teamModal = document.getElementById("team_modal");
-        const openTeamDetail = document.getElementById("open_team_detail_exemple");
-        const closeTeamDetail = document.querySelector("#team_modal .close");
-        openTeamDetail.addEventListener("click", () => {
-            teamModal.classList.add("is-active");
-        });
-        closeTeamDetail.addEventListener("click", () => {
-            teamModal.classList.remove("is-active");
-        });
-    </script> -->
 </body>
 
 <template id="table-modal">
@@ -118,6 +106,7 @@
         <td><i class="fa fa-trash"></i></td>
     </tr>
 </template>
+
 <template id="team-template">
     <section class="container has-text-centered my-6">
         <div class="mb-1">
@@ -126,9 +115,6 @@
         </div>
 
         <div class="imgContainer image is-flex is-justify-content-center my-5">
-            <figure class="image is-64x64 mx-2">
-                <img src="./asset/img/1.webp" class="is-rounded">
-            </figure>
         </div>
         <div class="container btnContainer">
             <button class="button btnModalTeam">Administrer</button>
