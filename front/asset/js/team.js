@@ -5,10 +5,15 @@ const team = {
   init: () => {
     team.getTeams();
     modal.init();
-    document.querySelector(".edit").addEventListener("click", team.showInputEditTeam);
-    document.querySelector(".modal-card-head form").addEventListener("submit", team.handleEditName);
+    team.blind();
   },
 
+  blind: () => {
+    document.querySelector(".edit").addEventListener("click", team.showInputEditTeam);
+    document.querySelector(".modal-card-head form").addEventListener("submit", team.handleEditName);
+    document.querySelector("#nav-item-add-team").addEventListener("click", () => modal.openModal("#add_team_modal"));
+    document.querySelector("#form_team_modal").addEventListener("submit", team.handleAddTeam);
+  },
   getTeams: async () => {
     try {
       const result = await fetch(api.BaseUrl + "/teams");
@@ -57,7 +62,7 @@ const team = {
 
   handleModalTeam: async (event) => {
     const idTeam = event.currentTarget.dataset.id;
-    modal.openCloseModal("modal");
+    modal.openModal("#modal");
     try {
       const teamApi = await fetch(api.BaseUrl + "/teams/" + idTeam);
       const data = await teamApi.json();
@@ -127,7 +132,7 @@ const team = {
 
     team.closeInputEditTeam();
 
-    modal.openCloseModal("modal");
+    modal.closeModal(".modal");
   },
 
   updateTeam: async (id, data) => {
@@ -152,6 +157,48 @@ const team = {
     const teamElement = document.getElementById(team.id);
 
     teamElement.querySelector(".team-name").textContent = team.name;
+  },
+
+  handleAddTeam: async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    // Récupération des données du formulaire
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+
+    const addTeam = await team.addTeam(data);
+
+    if (addTeam === null) {
+      console.log("Impossible de modifier la team !");
+      return;
+    }
+
+    addTeam.pokemon = [];
+
+    team.innerHTMLTeam(addTeam);
+
+    form.reset();
+
+    modal.closeModal(".modal");
+  },
+
+  addTeam: async (data) => {
+    try {
+      const result = await fetch(api.BaseUrl + "/teams", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!result.ok) {
+        console.error(result);
+        return null;
+      }
+
+      return await result.json();
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 
