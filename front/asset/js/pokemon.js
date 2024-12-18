@@ -1,44 +1,24 @@
 import modal from "./modal.js";
 import api from "./api.js";
+import team from "./team.js";
 
 const pokemon = {
   init: () => {
-    pokemon.getPokemon();
+    api.getPokemon();
     modal.init();
-  },
-  getPokemon: async () => {
-    try {
-      const pokemons = await fetch(api.BaseUrl + "/pokemons");
-      const data = await pokemons.json();
-
-      if (!pokemons) {
-        console.error(pokemons);
-        return null;
-      }
-
-      for (const el of data) {
-        pokemon.innerHTMLElements(el);
-      }
-    } catch (error) {
-      console.error(error);
-    }
   },
 
   handleOnePokemon: async (event) => {
     const idPokemon = event.currentTarget.dataset.id;
     modal.openModal("#modal");
-    try {
-      const result = await fetch(api.BaseUrl + "/pokemons/" + idPokemon);
-      const data = await result.json();
-      if (!result) {
-        console.error(result);
-        return null;
-      }
 
-      pokemon.innerHTMLModal(data);
-    } catch (error) {
-      console.error(error);
+    const getPokemon = await api.getOnePokemon(idPokemon);
+    if (getPokemon === null) {
+      console.error("Impossible de charger les pokemons !");
+      return;
     }
+
+    pokemon.innerHTMLModal(getPokemon);
   },
 
   innerHTMLElements: (data) => {
@@ -58,7 +38,7 @@ const pokemon = {
     document.querySelector("#app").append(clone);
   },
 
-  innerHTMLModal: (data) => {
+  innerHTMLModal: async (data) => {
     // Modification des données
     document.querySelector(".pkm_name").textContent = data.name;
     document.querySelector(".pkm_img_modal").setAttribute("src", `./asset/img/${data.id}.webp`);
@@ -68,6 +48,21 @@ const pokemon = {
     document.querySelector(".atk_spe .progress").value = data.atk_spe;
     document.querySelector(".def_spe .progress").value = data.def_spe;
     document.querySelector(".speed .progress").value = data.speed;
+
+    const form = document.querySelector("#form_add_pkm_team");
+    form.dataset.id = data.id;
+    form.addEventListener("submit", team.handleAddPokemonInTeam);
+
+    const selectTeam = document.querySelector(".select");
+    selectTeam.innerHTML = "";
+
+    const teams = await api.getTeams();
+    for (const team of teams) {
+      const option = document.createElement("option");
+      option.value = team.id;
+      option.textContent = team.name;
+      selectTeam.append(option);
+    }
   },
 };
 

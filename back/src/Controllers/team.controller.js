@@ -1,4 +1,4 @@
-import { Team } from "../models/association.js";
+import { Pokemon, Team, Team_Pokemon } from "../models/association.js";
 
 const teamController = {
   getAllTeams: async (req, res) => {
@@ -65,11 +65,40 @@ const teamController = {
     }
   },
 
+  updatePokemonTeam: async (req, res) => {
+    try {
+      const { idTeam, idPokemon } = req.params;
+
+      await Team_Pokemon.create({ pokemon_id: idPokemon, team_id: idTeam });
+
+      res.status(200).json({ message: "Le pokemon a bien été ajouté à la team !" });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
   deleteTeam: async (req, res) => {
     try {
       const team = await Team.findByPk(req.params.id);
 
       team.destroy();
+      res.status(204).end();
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  deletePokemonToTeam: async (req, res) => {
+    try {
+      const { idTeam, idPokemon } = req.params;
+      const result = await Team_Pokemon.findOne({
+        where: {
+          pokemon_id: idPokemon,
+          team_id: idTeam,
+        },
+      });
+
+      result.destroy();
       res.status(204).end();
     } catch (error) {
       console.error(error);

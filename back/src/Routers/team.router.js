@@ -10,7 +10,11 @@ teamRouter.get("/teams/:id", teamController.getOneTeam);
 teamRouter.post("/teams", teamController.createdTeam);
 // Patch
 teamRouter.patch("/teams/:id", teamController.updateTeam);
+// Put
+teamRouter.put("/teams/:idTeam/pokemons/:idPokemon", teamController.updatePokemonTeam);
 // Delete
 teamRouter.delete("/teams/:id", teamController.deleteTeam);
+// Delete Pokemon
+teamRouter.delete("/teams/:idTeam/pokemons/:idPokemon", teamController.deletePokemonToTeam);
 
 export default teamRouter;

@@ -407,11 +407,11 @@ VALUES
 ;
 
 INSERT INTO "team"
-  ("id", "name", "description")
+  ("name", "description")
 VALUES
-  ( 1, 'Ultimate Team', 'La meilleure team du monde'),
-  ( 2, 'La Team de l''enfer', 'Le feuuuuu'),
-  ( 3, 'Squad fofolle', 'Pour tout gagner');
+  ('Ultimate Team', 'La meilleure team du monde'),
+  ('La Team de l''enfer', 'Le feuuuuu'),
+  ('Squad fofolle', 'Pour tout gagner');
 INSERT INTO "team_pokemon"
     ("pokemon_id", "team_id")
 VALUES
@@ -434,6 +434,5 @@ VALUES
 (145,3),
 (144,3);
 
-SELECT setval('team_id_seq', (SELECT MAX(id) from "team"));
 
 COMMIT;
