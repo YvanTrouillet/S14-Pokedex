@@ -1,17 +1,20 @@
 import pokemon from "./pokemon.js";
+import team from "./team.js";
 import types from "./type.js";
 
 const app = {
   init: () => {
     switch (document.querySelector("h1").textContent) {
       case "Pokedex":
-        console.log("pokedex");
         pokemon.init();
         break;
 
       case "Types":
-        console.log("types");
         types.init();
+        break;
+
+      case "Teams":
+        team.init();
         break;
 
       default:

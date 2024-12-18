@@ -1,9 +1,9 @@
 const modal = {
   init: () => {
-    document.querySelectorAll(".close").forEach((el) => el.addEventListener("click", () => modal.openCloseModal()));
+    document.querySelectorAll(".close").forEach((el) => el.addEventListener("click", () => modal.openCloseModal("modal")));
   },
-  openCloseModal: () => {
-    const pokemonModal = document.getElementById("pkm_detail");
+  openCloseModal: (selector) => {
+    const pokemonModal = document.getElementById(selector);
     pokemonModal.classList.toggle("is-active");
   },
 };

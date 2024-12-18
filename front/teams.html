@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Title -->
+    <title>Pokedex</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='24px' height='24px' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' color='%23000000'%3E%3Cpath d='M3 3.6V20.4C3 20.7314 3.26863 21 3.6 21H20.4C20.7314 21 21 20.7314 21 20.4V3.6C21 3.26863 20.7314 3 20.4 3H3.6C3.26863 3 3 3.26863 3 3.6Z' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M6 6L6 16' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M10 6V9' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M14 6V13' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M18 6V11' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/svg%3E" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="./asset/css/style.css" />
+
+    <!-- Script JS -->
+    <script defer type="module" src="./asset/js/index.js"></script>
+</head>
+
+<body>
+    <header class="my-5 my-6">
+        <h1 class="title has-text-centered is-1">Teams</h1>
+        <nav class="navbar is-flex is-justify-content-space-evenly" id="navbar_main" role="navigation"
+            aria-label="main navigation">
+            <a class="navbar-item" id="nav-item-home" href="./index.html"> Home </a>
+            <a class="navbar-item" id="nav-item-type" href="./types.html"> Types </a>
+            <a class="navbar-item" id="nav-item-team" href="./teams.html"> Teams </a>
+            <a class="navbar-item" id="nav-item-add-team"> Add Team </a>
+        </nav>
+    </header>
+
+    <main id="app"
+        class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6">
+
+
+        <!-- DO YOUR WORK HERE -->
+
+    </main>
+
+    <!-- ADD YOUR SCRIPTS HERE -->
+
+    <div class="modal" id="modal">
+        <div class="modal-background close"></div>
+        <div class="modal-content">
+            <header class="modal-card-head">
+                <h2 class="modal-card-title team_name"></h2>
+                <form class="hidden">
+                    <input type="text" name="team_name" class="modal-card-title input_team_name mr-3">
+                </form>
+                <i class="fa fa-pencil edit mr-3"></i>
+                <i class="fa fa-window-close close"></i>
+            </header>
+            <div class="modal-card-body">
+                <p class="team_description"></p>
+                <table class="table has-text-centered">
+                    <thead>
+                        <tr>
+                            <th><abbr title="numero">N°</abbr></th>
+                            <th><abbr title="name">Name</abbr></th>
+                            <th><abbr title="hp">PV</abbr></th>
+                            <th><abbr title="atk">Atk</abbr></th>
+                            <th><abbr title="def">Def</abbr></th>
+                            <th><abbr title="atk_spe">Atk Spe</abbr></th>
+                            <th><abbr title="def_spe">Def Spe</abbr></th>
+                            <th><abbr title="speed">Vit</abbr></th>
+                            <th><abbr title="types">Types</abbr></th>
+                            <th><abbr title="options">Options</abbr></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_team">
+                        <!-- TODO: A dynamiser -->
+                        <!-- END A dynamiser  -->
+                    </tbody>
+                </table>
+            </div>
+            <footer class="modal-card-foot">
+                <div class="buttons">
+                    <button class="button close">Retour</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Sample code, do not use as it is, adapt it to your needs
+        const teamModal = document.getElementById("team_modal");
+        const openTeamDetail = document.getElementById("open_team_detail_exemple");
+        const closeTeamDetail = document.querySelector("#team_modal .close");
+        openTeamDetail.addEventListener("click", () => {
+            teamModal.classList.add("is-active");
+        });
+        closeTeamDetail.addEventListener("click", () => {
+            teamModal.classList.remove("is-active");
+        });
+    </script> -->
+</body>
+
+<template id="table-modal">
+    <tr>
+        <td>1</td>
+        <td>Builbizarre</td>
+        <td>100</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td><i class="fa fa-trash"></i></td>
+    </tr>
+</template>
+<template id="team-template">
+    <section class="container has-text-centered my-6">
+        <div class="mb-1">
+            <h2 class="team-name title">My Great Team</h2>
+            <p class="team-description subtitle my-5">Description of My Great Team</p>
+        </div>
+
+        <div class="imgContainer image is-flex is-justify-content-center my-5">
+            <figure class="image is-64x64 mx-2">
+                <img src="./asset/img/1.webp" class="is-rounded">
+            </figure>
+        </div>
+        <div class="container btnContainer">
+            <button class="button btnModalTeam">Administrer</button>
+        </div>
+    </section>
+</template>
+
+</html>
