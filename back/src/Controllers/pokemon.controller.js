@@ -5,6 +5,9 @@ const pokemonController = {
     try {
       const pokemons = await Pokemon.findAll({
         attributes: ["id", "name", "hp", "atk", "def", "atk_spe", "def_spe", "speed"],
+        include: {
+          association: "type",
+        },
       });
       res.status(200).json(pokemons);
     } catch (error) {
@@ -15,6 +18,9 @@ const pokemonController = {
     try {
       const pokemon = await Pokemon.findByPk(req.params.id, {
         attributes: ["id", "name", "hp", "atk", "def", "atk_spe", "def_spe", "speed"],
+        include: {
+          association: "type",
+        },
       });
       res.status(200).json(pokemon);
     } catch (error) {

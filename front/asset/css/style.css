@@ -1,5 +1,139 @@
+:root {
+    --arrow-bg: rgba(255, 255, 255, 0.3);
+    --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+    --option-bg: white;
+    --select-bg: rgba(255, 255, 255, 0.2);
+  }
+
+  header {
+    height: 80dvh;
+    background: url(../img/bg-balls.svg),linear-gradient(180deg,#ff8a00,#ff3600);
+  }
+
+  .ocean, .wave {
+    position: absolute;
+    right: 0;
+  }
+  .ocean {
+    bottom: 15rem;
+    width: 100dvw;
+    height: 100px;
+    overflow-x: hidden;
+  }
+
+  .wave {
+    background: url(../img/wave.svg) repeat-x;
+    width: 1000%;
+    height: 100px;
+    bottom: 0;
+    right: 0;
+    animation: wave 15s cubic-bezier(.36,.45,.63,.53) infinite;
+    transform: translateZ(0);
+    overflow-x: hidden;
+  }
+
+  .wave:nth-of-type(2) {
+    bottom: 0;
+    right: 0;
+    animation: wave 10s cubic-bezier(.36,.45,.63,.53) -.125s infinite;
+    opacity: 1
+}
+
+.wave:nth-of-type(3) {
+    bottom: 0;
+    right: 0;
+    animation: wave 5s cubic-bezier(0.42, 0.62, 0.68, 0.51) -.125s infinite;
+    opacity: 1
+}
+
+@keyframes wave {
+    0% {
+        margin-right: 0
+    }
+
+    to {
+        margin-right: -1600px
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem 0.5rem;
+    margin-top: 7rem;
+    justify-content: center;
+}
+
+.card-loading {
+    flex: 0 0 auto;
+    width: 30%;
+}
+
+.card-poke{
+    padding: 8rem 3rem 3rem;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 50%, auto;
+    background-position: 0, bottom 50% center;
+    background-color: rgba(0, 0, 0, .314);
+    border-radius: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    color: white;
+}
+
+.card-image {
+    position: absolute;
+    top: -5rem;
+    left:50%;
+    transform: translateX(-50%);
+    filter: saturate(1.9);
+    z-index: 10000000;
+}
+
 .pkm_img{
-    width:50%
+    width: 100%;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content p {
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
+}
+
+.container_type {
+display: flex;
+justify-content: center;
+gap: 1rem;
+}
+
+.type-poke {
+    padding: 0.3rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.3rem;
+    font-weight: bold;
+}
+
+.type-poke-head {
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+#FilterType {
+display: flex;
+gap: 1rem;
 }
 
 .pkm_stats_modal{
@@ -22,3 +156,126 @@ abbr{
 .hidden {
     display: none;
 }
+
+
+/* Modal */
+
+.modal-background {
+    background-color: rgba(0, 0, 0, 0.456);
+}
+
+.modal-card-pkm {
+    padding: 3rem;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 50%, auto;
+    background-position: 0, bottom 50% center;
+    background-color: rgba(0, 0, 0, .314);
+    border-radius: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    width: 40%;
+    display: block;
+    color: white;
+}
+
+.modal-card-body {
+    background-color: transparent;
+    overflow: visible;
+
+}
+
+.fa-window-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 1rem;
+    font-size: 2rem;
+    
+}
+
+.img-poke-modal {
+    position: absolute;
+    top: -5rem;
+    left:50%;
+    transform: translateX(-50%);
+    filter: saturate(1.9);
+    z-index: 10000000;
+}
+
+.modal-card-content {
+    margin-top: 15rem;
+}
+
+.modal-card-content h4 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.container_type-modal {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.row {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+    align-items: center;
+}
+
+.row>div {
+    width: 25%;
+    font-weight: bold;
+}
+
+.img-poke-modal img {
+    width: 100%;
+}
+
+.modal-card-foot {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal-card-foot form {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+
+.modal-card-foot form select {
+    /* Reset */
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    /* Personalize */
+    width: 15rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+    color: rgb(0, 0, 0);
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    /* Remove IE arrow */
+    &::-ms-expand {
+      display: none;
+    }
+    /* Remove focus outline */
+    &:focus {
+      outline: none;
+    }
+    /* <option> colors */
+    .modal-card-foot form option {
+      color: inherit;
+      background-color: var(--option-bg);
+    }
+  }
+  

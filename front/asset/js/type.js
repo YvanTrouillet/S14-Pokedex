@@ -22,17 +22,21 @@ const types = {
 
   innerHTMLTypes: (data) => {
     for (const type of data) {
-      const newtype = document.createElement("button");
-      newtype.classList.add("button");
-      newtype.classList.add("is-flex-grow-1");
-      newtype.classList.add("mx-2");
-      newtype.style.backgroundColor = `#${type.color}`;
-      newtype.textContent = type.name;
-      newtype.dataset.id = type.id;
+      const btnType = document.createElement("span");
+      const imgType = document.createElement("img");
 
-      newtype.addEventListener("click", types.handleFilter);
+      imgType.setAttribute("src", `./asset/icon/${type.id}.svg`);
+      imgType.setAttribute("width", "18");
 
-      document.querySelector("#FilterType").append(newtype);
+      btnType.classList.add("type-poke-head");
+      btnType.style.backgroundColor = `#${type.color}`;
+      btnType.dataset.id = type.id;
+
+      btnType.prepend(imgType);
+
+      btnType.addEventListener("click", types.handleFilter);
+
+      document.querySelector("#FilterType").append(btnType);
     }
   },
 
@@ -46,7 +50,6 @@ const types = {
       for (const pokemonData of data.pokemon) {
         pokemon.innerHTMLElements(pokemonData);
       }
-      console.log(data);
     } catch (error) {
       console.error(error);
     }

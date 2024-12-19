@@ -15,6 +15,9 @@ const typeController = {
       const type = await Type.findByPk(req.params.id, {
         include: {
           association: "pokemon",
+          include: {
+            association: "type",
+          },
         },
       });
       res.status(200).json(type);

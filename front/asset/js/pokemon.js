@@ -1,11 +1,13 @@
 import modal from "./modal.js";
 import api from "./api.js";
 import team from "./team.js";
+import types from "./type.js";
 
 const pokemon = {
   init: () => {
     api.getPokemon();
     modal.init();
+    types.getTypes();
   },
 
   handleOnePokemon: async (event) => {
@@ -22,6 +24,7 @@ const pokemon = {
   },
 
   innerHTMLElements: (data) => {
+    console.log(data);
     // Récupérer le Template
     const template = document.querySelector("#pokemon-template");
     const clone = document.importNode(template.content, true);
@@ -29,10 +32,29 @@ const pokemon = {
     // On insère les données
     clone.querySelector(".card-content p").textContent = data.name;
     clone.querySelector(".pkm_img").setAttribute("src", `./asset/img/${data.id}.webp`);
-    clone.querySelector(".card").dataset.id = data.id;
+    clone.querySelector(".card-loading").dataset.id = data.id;
+    clone.querySelector(".card-poke").style.backgroundImage = "url(./asset/img/half-pokeball.svg),radial-gradient(80% 80% at 50% bottom, #" + data.type[0].color + ", rgba(6, 14, 32, 0.8))";
+    clone.querySelector(".card-poke").style.transform = "translateZ(-10px) scale(0.9)";
+
+    // On insére les types
+    for (const type of data.type) {
+      const btnType = document.createElement("span");
+      const imgType = document.createElement("img");
+
+      imgType.setAttribute("src", `./asset/icon/${type.id}.svg`);
+      imgType.setAttribute("width", "18");
+
+      btnType.classList.add("type-poke");
+      btnType.style.backgroundColor = `#${type.color}`;
+      btnType.textContent = type.name;
+      btnType.dataset.id = type.id;
+
+      btnType.prepend(imgType);
+      clone.querySelector('[slot="container_type"]').append(btnType);
+    }
 
     // Écouteur d'evenement
-    clone.querySelector(".card").addEventListener("click", pokemon.handleOnePokemon);
+    clone.querySelector(".card-loading").addEventListener("click", pokemon.handleOnePokemon);
 
     // On insère le HTML dans la page
     document.querySelector("#app").append(clone);
@@ -40,8 +62,30 @@ const pokemon = {
 
   innerHTMLModal: async (data) => {
     // Modification des données
+    console.log(data);
+    document.querySelector(".modal-card-pkm").style.backgroundImage = "url(./asset/img/half-pokeball.svg),radial-gradient(80% 80% at 50% bottom, #" + data.type[0].color + ", rgba(6, 14, 32, 0.8))";
+    document.querySelector(".modal-card-pkm").style.transform = "translateZ(-10px) scale(0.9)";
+
     document.querySelector(".pkm_name").textContent = data.name;
     document.querySelector(".pkm_img_modal").setAttribute("src", `./asset/img/${data.id}.webp`);
+
+    document.querySelector(".container_type-modal").innerHTML = "";
+    for (const type of data.type) {
+      const btnType = document.createElement("span");
+      const imgType = document.createElement("img");
+
+      imgType.setAttribute("src", `./asset/icon/${type.id}.svg`);
+      imgType.setAttribute("width", "18");
+
+      btnType.classList.add("type-poke");
+      btnType.style.backgroundColor = `#${type.color}`;
+      btnType.textContent = type.name;
+      btnType.dataset.id = type.id;
+
+      btnType.prepend(imgType);
+      document.querySelector(".container_type-modal").append(btnType);
+    }
+
     document.querySelector(".pv .progress").value = data.hp;
     document.querySelector(".atk .progress").value = data.atk;
     document.querySelector(".def .progress").value = data.def;

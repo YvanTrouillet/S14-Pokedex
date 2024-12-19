@@ -26,8 +26,13 @@
     <script defer type="module" src="./asset/js/index.js"></script>
 </head>
 
-<body>
-    <header class="my-5 my-6">
+<body style="background-color: #000000;">
+    <header>
+        <div class="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
         <h1 class="title has-text-centered is-1">Pokedex</h1>
         <nav class="navbar is-flex is-justify-content-space-evenly" id="navbar_main" role="navigation"
             aria-label="main navigation">
@@ -38,32 +43,34 @@
         </nav>
     </header>
 
-    <main id="app"
-        class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6">
+    <div id="FilterType" class="is-flex is-justify-content-center my-6 is-flex-wrap-wrap">
+    </div>
+
+    <main id="app" class="container">
 
 
         <!-- DO YOUR WORK HERE -->
 
     </main>
 
+
+
     <!-- Fenetre de un pokemon -->
 
     <div class="modal" id="modal">
         <div class="modal-background close"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <h2 class="modal-card-title pkm_name">Bulbizarre</h2>
+        <div class="modal-card-pkm">
+            <section class="modal-card-body">
                 <i class="fa fa-window-close close"></i>
-            </header>
-            <section
-                class="modal-card-body is-flex is-flex-direction-row is-align-content-center is-align-items-center">
-                <div class="mr-4">
+                <div class="img-poke-modal">
                     <img src="./asset/img/1.webp" class="pkm_img_modal">
                 </div>
-                <div class="modal-card-content pkm_stats_modal">
-                    <h4 class="mb-4">Statistiques</h4>
+                <div class="modal-card-content">
+                    <h4 class="pkm_name">Statistiques</h4>
+                    <div class="container_type-modal">
+                    </div>
                     <p class="modal_team_types"></p>
-                    <div class="pv">
+                    <div class="row pv">
                         <div class="is-flex is-justify-content-space-start">
                             <div class="">PV:</div>
                             <div class="pokemon-hp ml-1"></div>
@@ -107,7 +114,7 @@
                     </div>
                 </div>
             </section>
-            <footer class="modal-card-foot is-flex">
+            <footer class="modal-card-foot">
                 <div class="add_team_container">
                     <form id="form_add_pkm_team">
                         <select class="select" name="teams">
@@ -121,32 +128,19 @@
             </footer>
         </div>
     </div>
-
-    <!-- <script>
-        // Sample code, do not use as it is, adapt it to your needs
-        const pokemonModal = document.getElementById("pkm_detail");
-        const openPkmDetail = document.getElementById("open_pkm_detail_exemple");
-        const closePkmDetail = document.querySelector("#pkm_detail .close");
-        openPkmDetail.addEventListener("click", () => {
-          pokemonModal.classList.add("is-active");
-        });
-        closePkmDetail.addEventListener("click", () => {
-          pokemonModal.classList.remove("is-active");
-        });
-      </script> -->
-
-    <!-- ADD YOUR SCRIPTS HERE -->
 </body>
 
 <!-- Template Cartes Pokemons -->
 <template id="pokemon-template">
-    <div class="card mb-6 has-text-centered pt-4 my-6">
-        <a>
+    <div class="card-loading">
+        <a class="card-poke">
             <div class="card-image">
                 <img class="pkm_img" src="./asset/img/1.webp">
             </div>
             <div class="card-content">
                 <p>Bulbizarre</p>
+                <div class="container_type" slot="container_type">
+                </div>
             </div>
         </a>
     </div>
