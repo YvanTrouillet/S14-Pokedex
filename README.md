@@ -13,7 +13,7 @@ Développer une API REST pour gérer les données des Pokémons, des types et de
 Consommer l’API pour afficher dynamiquement les informations et permettre la gestion des équipes (ajout, renommage, suppression de Pokémons).
 Conception : (Optionnel) Créer un MCD, un MLD et des wireframes pour structurer le projet.
 
-Organisation : Suivre une roadmap sur 3 jours pour livrer les fonctionnalités essentielles.
+Organisation : Suivre une roadmap sur 3 jours pour livrer les fonctionnalités  essentielles.
 
 ## 📋 Fonctionnalités principales
 
