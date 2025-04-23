@@ -101,3 +101,4 @@ Je ne te montre pas le chemin, depuis le temps .. tu le connais 😏
 Voilà, le crois que tu as tout ce qu'il faut pour te lancer, amuse-toi bien et n'oublie pas de faire des commits et push régulièrement, sinon tu risques de faire comme le concepteur de ce challenge qui a la facheuse tendance de ne pas pusher assez souvent ou alors au milieu d'une feature, et c'est dommage parce que la dernière fois, il a oublié de commiter les numéros du loto de la semaine prochaine justement, qui sont
 
 _[TODO finir ce readme]_
+# S14-Pokedex
