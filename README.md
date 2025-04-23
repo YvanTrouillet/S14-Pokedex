@@ -49,3 +49,4 @@ Exécutez les scripts SQL (create_tables.sql et seeding_tables.sql) pour initial
 Installez les dépendances backend avec npm install dans le dossier back.
 Lancez le serveur backend avec npm start (à configurer dans package.json).
 Lancez un Live Server pour visualiser les fichiers HTML du dossier integration.
+# S14-Pokedex
